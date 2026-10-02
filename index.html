@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Expense & Budget Visualizer</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <main class="app">
+    <header class="top">
+      <h1>Expense &amp; Budget Visualizer</h1>
+      <button id="themeBtn" type="button" aria-label="Toggle dark mode">Dark</button>
+    </header>
+
+    <section class="balance">
+      <span>Total Balance</span>
+      <strong id="total">Rp 0</strong>
+      <div id="limitWarning" class="limit-warning" hidden>⚠ Spending limit reached!</div>
+    </section>
+
+    <section class="card">
+      <h2>Add transaction</h2>
+      <form id="form" novalidate>
+        <div class="field">
+          <input id="name" type="text" placeholder="Item name" autocomplete="off" aria-label="Item name">
+          <span class="error" id="nameError"></span>
+        </div>
+        <div class="field">
+          <input id="amount" type="number" placeholder="Amount (Rp)" min="0.01" step="0.01" aria-label="Amount">
+          <span class="error" id="amountError"></span>
+        </div>
+        <div class="field">
+          <select id="category" aria-label="Category">
+            <option value="">Select category</option>
+            <option value="Food">Food</option>
+            <option value="Transport">Transport</option>
+            <option value="Fun">Fun</option>
+          </select>
+          <span class="error" id="categoryError"></span>
+        </div>
+        <button type="submit">Add transaction</button>
+      </form>
+    </section>
+
+    <section class="card">
+      <h2>Spending by category</h2>
+      <div class="chart-box"><canvas id="chart"></canvas></div>
+    </section>
+
+    <section class="card">
+      <div class="list-head">
+        <h2>Transactions</h2>
+        <select id="sort" aria-label="Sort transactions">
+          <option value="newest">Newest first</option>
+          <option value="oldest">Oldest first</option>
+          <option value="high">Amount: high to low</option>
+          <option value="low">Amount: low to high</option>
+          <option value="category">Category A-Z</option>
+        </select>
+      </div>
+      <label class="limit">Spending limit (Rp)
+          <input id="limitInput" type="number" min="0" placeholder="e.g. 500000">
+      </label>
+      <p id="emptyState" class="empty-state">No transactions yet. Add your first one above.</p>
+      <ul id="list"></ul>
+    </section>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
